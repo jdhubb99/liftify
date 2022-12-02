@@ -9,6 +9,9 @@ on:
   pull_request:
     branches: ["main"]
 
+environment:
+  name: Node.js
+
 jobs:
   build:
     runs-on: ubuntu-latest
