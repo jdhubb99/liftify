@@ -9,9 +9,6 @@ on:
   pull_request:
     branches: ["main"]
 
-environment:
-  name: Node.js
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,6 +17,9 @@ jobs:
       matrix:
         node-version: [16.x, 18.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    environment:
+      name: Node.js
 
     steps:
       - name: create env file
