@@ -1,8 +1,11 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import workoutRouter from './routes/workouts.js';
 
+dotenv.config();
 const app = express();
 
 let corsOptions = {
@@ -17,11 +20,9 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 // simple route
-app.get('/', (req, res) => {
-  res.json({ message: 'Welcome to the application.' });
-});
+app.use('/api/workouts', workoutRouter);
 
 const port = process.env.PORT || 4000;
 app.listen(port, () => {
-  console.log(`Server is running on port: http://localhost:${port}`);
+  console.log(`Server is running on: http://localhost:${port}`);
 });
