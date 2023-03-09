@@ -22,7 +22,11 @@ app.use(bodyParser.json());
 // simple route
 app.use('/api/workouts', workoutRouter);
 
+// connect to DB
 const port = process.env.PORT || 4000;
-app.listen(port, () => {
-  console.log(`Server is running on: http://localhost:${port}`);
-});
+mongoose.connect(process.env.MONGO_URI).then(() => {
+  app.listen(port, () => {
+    console.log(`Connected to DB & server is running on: http://localhost:${port}`);
+  });
+}).catch(e => { console.log(e) });
+
