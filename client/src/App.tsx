@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import NotFound from './pages/NotFound';
+import Home from './pages/HomePage/Home';
+import NotFound from './pages/NotFoundPage/NotFound';
 import Navbar from './components/Navbar/Navbar';
 import { SITE_TITLE } from './consts';
 

@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Workout } from '../types/Workout';
+import WorkoutCard from '../../components/WorkoutCard/WorkoutCard';
+import { Workout } from '../../types/Workout';
+import './Home.css';
 
 const Home: React.FC = () => {
   const [workouts, setWorkouts] = useState<Workout[]>([]);
@@ -16,19 +18,17 @@ const Home: React.FC = () => {
   }, []);
 
   return (
-    <div className="home">
-      <div className="workouts">
-        <h1>Workouts</h1>
-        {workouts &&
-          workouts.map((workout) => (
-            <div key={workout._id}>
-              <h3>{workout.title}</h3>
-              <p>{workout.reps}</p>
-              <p>{workout.weight}</p>
-            </div>
-          ))}
+    <>
+      <h1>Workouts</h1>
+      <div className="home">
+        <div className="workouts">
+          {workouts &&
+            workouts.map((workout) => (
+              <WorkoutCard key={workout._id} workout={workout} />
+            ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
