@@ -8,9 +8,8 @@ import workoutRouter from './routes/workouts.js';
 dotenv.config();
 const app = express();
 
-let corsOptions = {
-  origin: `http://localhost:5173`,
-  optionsSuccessStatus: 200,
+const corsOptions = {
+  origin: 'http://127.0.0.1:5173',
 };
 
 // middleware
@@ -24,9 +23,15 @@ app.use('/api/workouts', workoutRouter);
 
 // connect to DB
 const port = process.env.PORT || 4000;
-mongoose.connect(process.env.MONGO_URI).then(() => {
-  app.listen(port, () => {
-    console.log(`Connected to DB & server is running on: http://localhost:${port}`);
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => {
+    app.listen(port, () => {
+      console.log(
+        `Connected to DB & server is running on: http://localhost:${port}`
+      );
+    });
+  })
+  .catch((error) => {
+    console.log(error);
   });
-}).catch(error => { console.log(error) });
-
