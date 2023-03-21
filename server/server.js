@@ -13,7 +13,7 @@ let corsOptions = {
   optionsSuccessStatus: 200,
 };
 
-// Middleware
+// middleware
 app.use(cors(corsOptions));
 
 // parse requests of content-type - application/json
@@ -28,5 +28,5 @@ mongoose.connect(process.env.MONGO_URI).then(() => {
   app.listen(port, () => {
     console.log(`Connected to DB & server is running on: http://localhost:${port}`);
   });
-}).catch(e => { console.log(e) });
+}).catch(error => { console.log(error) });
 
