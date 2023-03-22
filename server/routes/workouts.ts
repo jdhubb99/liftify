@@ -1,4 +1,4 @@
-import express from 'express';
+import { Router } from 'express';
 import {
   createWorkout,
   getAllWorkouts,
@@ -6,7 +6,7 @@ import {
   deleteWorkoutById,
   updateWorkoutById,
 } from '../controllers/workoutController.js';
-const router = express.Router();
+const router = Router();
 
 // GET all workouts
 router.get('/', getAllWorkouts);
