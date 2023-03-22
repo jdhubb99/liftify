@@ -1,19 +1,19 @@
-import express from 'express';
+import express, { Express, Request } from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import mongoose from 'mongoose';
+import { connect } from 'mongoose';
 import workoutRouter from './routes/workouts.js';
 
 dotenv.config();
-const app = express();
+const app: Express = express();
 
 const corsOptions = {
   origin: 'http://127.0.0.1:5173',
 };
 
 // middleware
-app.use(cors(corsOptions));
+app.use(cors<Request>(corsOptions));
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
@@ -23,8 +23,7 @@ app.use('/api/workouts', workoutRouter);
 
 // connect to DB
 const port = process.env.PORT || 4000;
-mongoose
-  .connect(process.env.MONGO_URI)
+connect(process.env.MONGO_URI as string)
   .then(() => {
     app.listen(port, () => {
       console.log(
