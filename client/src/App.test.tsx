@@ -15,7 +15,7 @@ describe('App', () => {
     expect(
       screen.getByRole('heading', {
         level: 1,
-        name: 'Workouts',
+        name: 'Exercises',
       })
     ).toBeInTheDocument();
   });

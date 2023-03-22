@@ -1,11 +1,11 @@
-import { Workout } from '../../types/Workout';
-import './WorkoutCard.css';
+import { Exercise } from '../../types/Exercise';
+import './ExerciseCard.css';
 
 interface Props {
-  workout: Workout;
+  exercise: Exercise;
 }
 
-const WorkoutCard: React.FC<Props> = ({ workout }) => {
+const ExerciseCard: React.FC<Props> = ({ exercise }) => {
   function formatDate(date: string) {
     const newDate = new Date(date);
     const formattedDate = newDate.toLocaleDateString('en-US', {
@@ -22,19 +22,19 @@ const WorkoutCard: React.FC<Props> = ({ workout }) => {
   }
 
   return (
-    <div className="workout-card">
-      <h3>{workout.title}</h3>
+    <div className="exercise-card">
+      <h3>{exercise.name}</h3>
       <p>
         <strong>Weight (lbs): </strong>
-        {workout.weight}
+        {exercise.weight}
       </p>
       <p>
         <strong>Reps: </strong>
-        {workout.reps}
+        {exercise.reps}
       </p>
-      <p>{formatDate(workout.createdAt)}</p>
+      <p>{formatDate(exercise.createdAt)}</p>
     </div>
   );
 };
 
-export default WorkoutCard;
+export default ExerciseCard;

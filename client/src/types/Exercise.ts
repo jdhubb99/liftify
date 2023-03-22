@@ -1,6 +1,6 @@
-export interface Workout {
+export interface Exercise {
   _id: number;
-  title: string;
+  name: string;
   reps: number;
   weight: number;
   createdAt: string;

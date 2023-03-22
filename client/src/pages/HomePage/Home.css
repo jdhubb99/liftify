@@ -1,25 +1,25 @@
-.workouts {
+.exercises {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 4rem;
 }
 
-/* make the workouts responsive */
+/* make the exercises responsive */
 @media (max-width: 1440px) {
-  .workouts {
+  .exercises {
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 4rem;
   }
 }
 @media (max-width: 910px) {
-  .workouts {
+  .exercises {
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 2rem;
   }
 }
 
 @media (max-width: 600px) {
-  .workouts {
+  .exercises {
     grid-template-columns: 1fr;
     grid-gap: 2rem;
   }
