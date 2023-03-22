@@ -8,10 +8,14 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     const fetchWorkouts = async () => {
-      const response = await fetch('http://localhost:4000/api/workouts');
-      const data = await response.json();
-      if (response.ok) {
-        setWorkouts(data);
+      try {
+        const response = await fetch('http://localhost:4000/api/workouts');
+        const data = await response.json();
+        if (response.ok) {
+          setWorkouts(data);
+        }
+      } catch (error) {
+        console.error(error);
       }
     };
     fetchWorkouts();
