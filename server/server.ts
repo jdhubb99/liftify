@@ -8,12 +8,12 @@ import router from './routes/exercises.js';
 dotenv.config();
 const app: Express = express();
 
-const corsOptions = {
-  origin: 'http://127.0.0.1:5173',
-};
-
 // middleware
-app.use(cors<Request>(corsOptions));
+app.use(
+  cors({
+    origin: 'http://localhost:4000',
+  })
+);
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json());

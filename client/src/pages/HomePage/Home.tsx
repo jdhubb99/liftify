@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import ExerciseCard from '../../components/ExerciseCard/ExerciseCard';
+import ExerciseForm from '../../components/ExerciseForm/ExerciseForm';
 import { Exercise } from '../../types/Exercise';
 import './Home.css';
 
@@ -31,6 +32,7 @@ const Home: React.FC = () => {
               <ExerciseCard key={exercise._id} exercise={exercise} />
             ))}
         </div>
+        <ExerciseForm />
       </div>
     </>
   );
