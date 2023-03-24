@@ -6,7 +6,7 @@ interface Props {
 }
 
 const ExerciseCard: React.FC<Props> = ({ exercise }) => {
-  function formatDate(date: string) {
+  function formatDate(date: string | number | Date) {
     const newDate = new Date(date);
     const formattedDate = newDate.toLocaleDateString('en-US', {
       weekday: 'long',
@@ -32,7 +32,11 @@ const ExerciseCard: React.FC<Props> = ({ exercise }) => {
         <strong>Reps: </strong>
         {exercise.reps}
       </p>
-      <p>{formatDate(exercise.createdAt)}</p>
+      <p>
+        {exercise.createdAt
+          ? formatDate(exercise.createdAt)
+          : exercise.createdAt}
+      </p>
     </div>
   );
 };
