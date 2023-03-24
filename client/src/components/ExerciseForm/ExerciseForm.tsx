@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import type { Exercise } from '../../types/Exercise';
+import { useExerciseContext } from '../../hooks/useExerciseContext';
 import './ExerciseForm.css';
 
 const ExerciseForm: React.FC = () => {
+  const { dispatch } = useExerciseContext();
   const [error, setError] = useState<string | null>(null);
   const [name, setName] = useState<string>('');
   const [reps, setReps] = useState<number>(0);
@@ -26,12 +28,14 @@ const ExerciseForm: React.FC = () => {
       if (!response.ok) {
         setError(jsonResponse.error);
       }
-
-      setName('');
-      setReps(0);
-      setWeight(0);
-      setError(null);
-      console.log('Exercise successfully added', jsonResponse);
+      if (response.ok) {
+        setName('');
+        setReps(0);
+        setWeight(0);
+        setError(null);
+        console.log('Exercise successfully added', jsonResponse);
+        dispatch({ type: 'SET_EXERCISE', payload: jsonResponse });
+      }
     } catch (error) {
       console.error(error);
     }
