@@ -3,23 +3,23 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { connect } from 'mongoose';
-import workoutRouter from './routes/workouts.js';
+import router from './routes/exercises.js';
 
 dotenv.config();
 const app: Express = express();
 
-const corsOptions = {
-  origin: 'http://127.0.0.1:5173',
-};
-
 // middleware
-app.use(cors<Request>(corsOptions));
+app.use(
+  cors({
+    origin: 'http://localhost:4000',
+  })
+);
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
 
 // simple route
-app.use('/api/workouts', workoutRouter);
+app.use('/api/exercises', router);
 
 // connect to DB
 const port = process.env.PORT || 4000;

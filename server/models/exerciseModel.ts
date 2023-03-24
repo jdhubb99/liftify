@@ -1,18 +1,18 @@
 import { Schema, model } from 'mongoose';
 
-interface IWorkout {
-  title: string;
+interface IExercise {
+  name: string;
   reps: number;
   weight: number;
 }
 
-const workoutSchema = new Schema<IWorkout>(
+const exerciseSchema = new Schema<IExercise>(
   {
-    title: { type: String, required: true },
+    name: { type: String, required: true },
     reps: { type: Number, required: true },
     weight: { type: Number, required: true },
   },
   { timestamps: true }
 );
 
-export const Workout = model<IWorkout>('Workout', workoutSchema);
+export const Exercise = model<IExercise>('Exercise', exerciseSchema);

@@ -1,36 +1,38 @@
 import { useState, useEffect } from 'react';
-import WorkoutCard from '../../components/WorkoutCard/WorkoutCard';
-import { Workout } from '../../types/Workout';
+import ExerciseCard from '../../components/ExerciseCard/ExerciseCard';
+import ExerciseForm from '../../components/ExerciseForm/ExerciseForm';
+import { Exercise } from '../../types/Exercise';
 import './Home.css';
 
 const Home: React.FC = () => {
-  const [workouts, setWorkouts] = useState<Workout[]>([]);
+  const [exercises, setExercises] = useState<Exercise[]>([]);
 
   useEffect(() => {
-    const fetchWorkouts = async () => {
+    const fetchExercises = async () => {
       try {
-        const response = await fetch('http://localhost:4000/api/workouts');
+        const response = await fetch('http://localhost:4000/api/exercises');
         const data = await response.json();
         if (response.ok) {
-          setWorkouts(data);
+          setExercises(data);
         }
       } catch (error) {
         console.error(error);
       }
     };
-    fetchWorkouts();
+    fetchExercises();
   }, []);
 
   return (
     <>
-      <h1>Workouts</h1>
+      <h1>Exercises</h1>
       <div className="home">
-        <div className="workouts">
-          {workouts &&
-            workouts.map((workout) => (
-              <WorkoutCard key={workout._id} workout={workout} />
+        <div className="exercises">
+          {exercises &&
+            exercises.map((exercise) => (
+              <ExerciseCard key={exercise._id} exercise={exercise} />
             ))}
         </div>
+        <ExerciseForm />
       </div>
     </>
   );
