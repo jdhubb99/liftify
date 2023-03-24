@@ -40,23 +40,32 @@ const ExerciseForm: React.FC = () => {
   return (
     <form className="exercise-form" onSubmit={handleSubmit}>
       <h2 className="exercise-form__title">Add a New Exercise</h2>
-      <label className="exercise-form__label">Exercise Name:</label>
+      <label htmlFor="exercise-name" className="exercise-form__label">
+        Exercise Name:
+      </label>
       <input
         type="text"
+        id="exercise-name"
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
 
-      <label className="exercise-form__label">Reps:</label>
+      <label htmlFor="exercise-reps" className="exercise-form__label">
+        Reps:
+      </label>
       <input
         type="number"
+        id="exercise-reps"
         value={reps === 0 ? '' : reps}
         onChange={(e) => setReps(Number(e.target.value))}
       />
 
-      <label className="exercise-form__label">Weight (lbs):</label>
+      <label htmlFor="exercise-weight" className="exercise-form__label">
+        Weight (lbs):
+      </label>
       <input
         type="number"
+        id="exercise-weight"
         value={weight === 0 ? '' : weight}
         onChange={(e) => setWeight(Number(e.target.value))}
       />
