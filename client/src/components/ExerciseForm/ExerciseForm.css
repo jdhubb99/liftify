@@ -1,6 +1,7 @@
 .exercise-form {
   max-width: 500px;
   margin: 0 auto;
+  grid-area: exercise-form;
 }
 
 input[type='text'],
