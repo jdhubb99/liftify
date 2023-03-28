@@ -40,7 +40,7 @@ describe('Exercise Card', () => {
     render(<ExerciseCard exercise={testExercise} />);
     const date = screen.getByText(/on/);
     expect(date).toBeInTheDocument();
-    expect(date).toHaveTextContent('8:19 PM on Monday, March 20');
+    expect(date).toHaveTextContent('12:19 AM on Tuesday, March 21');
   });
 
   it('Displays the delete button', () => {
