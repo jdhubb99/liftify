@@ -17,6 +17,17 @@
   color: var(--color-primary);
 }
 
+.exercise-card button {
+  width: fit-content;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  color: #fff;
+  background-color: red;
+  border-radius: 0.25rem;
+  border: none; 
+  font-size: 1rem; 
+}
+
 @media (max-width: 910px) {
   .exercise-card {
     width: 90%;
