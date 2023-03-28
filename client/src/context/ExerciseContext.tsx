@@ -12,6 +12,8 @@ export const exerciseReducer = (state: any, action: any) => {
       return { exercises: action.payload };
     case 'SET_EXERCISE':
       return { exercises: [action.payload, ...state.exercises] };
+    case 'DELETE_EXERCISE':
+      return { exercises: state.exercises.filter((exercise: Exercise) => exercise._id !== action.payload._id) };
     default:
       return state;
   }

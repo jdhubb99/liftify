@@ -42,4 +42,10 @@ describe('Exercise Card', () => {
     expect(date).toBeInTheDocument();
     expect(date).toHaveTextContent('12:19 AM on Tuesday, March 21');
   });
+
+  it('Displays the delete button', () => {
+    render(<ExerciseCard exercise={testExercise} />);
+    const deleteButton = screen.getByRole('button', { name: 'Delete'});
+    expect(deleteButton).toBeInTheDocument();
+  });
 });

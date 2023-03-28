@@ -9,11 +9,7 @@ dotenv.config();
 const app: Express = express();
 
 // middleware
-app.use(
-  cors({
-    origin: 'http://localhost:4000',
-  })
-);
+app.use(cors());
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
