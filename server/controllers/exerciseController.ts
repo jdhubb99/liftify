@@ -35,6 +35,24 @@ export const getExerciseById = async (req: Request, res: Response) => {
 export const createExercise = async (req: Request, res: Response) => {
   const { name, reps, weight } = req.body;
 
+  let emptyFields = [];
+
+  if (!name) {
+    emptyFields.push('name');
+  }
+
+  if (!weight) {
+    emptyFields.push('weight');
+  }
+
+  if (!reps) {
+    emptyFields.push('reps');
+  }
+
+  if (emptyFields.length > 0) {
+    return res.status(400).json({ error: 'All fields need to be filled', emptyFields });
+  }
+
   // adds a new exercise doc to the database
   try {
     const exercise = await Exercise.create({ name, reps, weight });
