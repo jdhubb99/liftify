@@ -9,6 +9,7 @@ const ExerciseForm: React.FC = () => {
   const [name, setName] = useState<string>('');
   const [reps, setReps] = useState<number>(0);
   const [weight, setWeight] = useState<number>(0);
+  const [emptyFields, setEmptyFields] = useState<string[]>([]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -27,12 +28,14 @@ const ExerciseForm: React.FC = () => {
 
       if (!response.ok) {
         setError(jsonResponse.error);
+        setEmptyFields(jsonResponse.emptyFields);
       }
       if (response.ok) {
         setName('');
         setReps(0);
         setWeight(0);
         setError(null);
+        setEmptyFields([]);
         console.log('Exercise successfully added', jsonResponse);
         dispatch({ type: 'SET_EXERCISE', payload: jsonResponse });
       }
@@ -52,6 +55,7 @@ const ExerciseForm: React.FC = () => {
         id="exercise-name"
         value={name}
         onChange={(e) => setName(e.target.value)}
+        className={emptyFields.includes('name') ? 'error' : ''}
       />
 
       <label htmlFor="exercise-reps" className="exercise-form__label">
@@ -62,6 +66,7 @@ const ExerciseForm: React.FC = () => {
         id="exercise-reps"
         value={reps === 0 ? '' : reps}
         onChange={(e) => setReps(Number(e.target.value))}
+        className={emptyFields.includes('weight') ? 'error' : ''}
       />
 
       <label htmlFor="exercise-weight" className="exercise-form__label">
@@ -72,11 +77,12 @@ const ExerciseForm: React.FC = () => {
         id="exercise-weight"
         value={weight === 0 ? '' : weight}
         onChange={(e) => setWeight(Number(e.target.value))}
+        className={emptyFields.includes('reps') ? 'error' : ''}
       />
 
       <button className="exercise-form__button">Add Exercise</button>
 
-      {error && <p className="exercise-form__error">{error}</p>}
+      {error && <div className="exercise-form__error">{error}</div>}
     </form>
   );
 };

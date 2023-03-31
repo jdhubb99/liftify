@@ -1,6 +1,7 @@
 import { Exercise } from '../models/exerciseModel.js';
 import { Types } from 'mongoose';
 import type { Request, Response } from 'express';
+import { title } from 'process';
 
 // get all exercises
 export const getAllExercises = async (req: Request, res: Response) => {
@@ -34,6 +35,24 @@ export const getExerciseById = async (req: Request, res: Response) => {
 // create an exercise
 export const createExercise = async (req: Request, res: Response) => {
   const { name, reps, weight } = req.body;
+
+  let emptyFields = [];
+
+  if (!name) {
+    emptyFields.push('name');
+  }
+
+  if (!weight) {
+    emptyFields.push('weight');
+  }
+
+  if (!reps) {
+    emptyFields.push('reps');
+  }
+
+  if (emptyFields.length > 0) {
+    return res.status(400).json({ error: 'All fields need to be filled', emptyFields });
+  }
 
   // adds a new exercise doc to the database
   try {
