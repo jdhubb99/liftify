@@ -1,7 +1,6 @@
 import { Exercise } from '../models/exerciseModel.js';
 import { Types } from 'mongoose';
 import type { Request, Response } from 'express';
-import { title } from 'process';
 
 // get all exercises
 export const getAllExercises = async (req: Request, res: Response) => {
