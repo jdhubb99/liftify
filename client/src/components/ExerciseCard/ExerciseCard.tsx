@@ -1,6 +1,8 @@
 import { Exercise } from '../../types/Exercise';
 import './ExerciseCard.css';
 import { useExerciseContext } from '../../hooks/useExerciseContext';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
 
 interface Props {
   exercise: Exercise;
@@ -8,33 +10,22 @@ interface Props {
 
 const ExerciseCard: React.FC<Props> = ({ exercise }) => {
   const { dispatch } = useExerciseContext();
+  dayjs.extend(relativeTime);
 
-  function formatDate(date: string | number | Date) {
-    const newDate = new Date(date);
-    const formattedDate = newDate.toLocaleDateString('en-US', {
-      weekday: 'long',
-      month: 'long',
-      day: 'numeric',
-    });
-    const formattedTime = newDate.toLocaleTimeString('en-US', {
-      hour: 'numeric',
-      minute: 'numeric',
-      hour12: true,
-    });
-    return `${formattedTime} on ${formattedDate}`;
-  }
-  
   const handleClick = async () => {
-    const response = await fetch('http://localhost:4000/api/exercises/' + exercise._id, {
-      method: 'DELETE'
-    });
+    const response = await fetch(
+      'http://localhost:4000/api/exercises/' + exercise._id,
+      {
+        method: 'delete',
+      }
+    );
 
     const data = await response.json();
 
     if (response.ok) {
-      dispatch({type: 'DELETE_EXERCISE', payload: data });
+      dispatch({ type: 'delete_exercise', payload: data });
     }
-  }
+  };
 
   return (
     <div className="exercise-card">
@@ -47,12 +38,12 @@ const ExerciseCard: React.FC<Props> = ({ exercise }) => {
         <strong>Reps: </strong>
         {exercise.reps}
       </p>
-        <p>
-          {exercise.createdAt
-            ? formatDate(exercise.createdAt)
-            : exercise.createdAt}
-        </p>
-        <button onClick={handleClick}>Delete</button>
+      <p>
+        {Boolean(exercise.createdAt)
+          ? dayjs(exercise.createdAt).fromNow()
+          : exercise.createdAt}
+      </p>
+      <button onClick={handleClick}>Delete</button>
     </div>
   );
 };
