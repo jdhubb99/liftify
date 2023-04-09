@@ -1,7 +1,7 @@
 import { Exercise } from '../../types/Exercise';
 import './ExerciseCard.css';
 import { useExerciseContext } from '../../hooks/useExerciseContext';
-import * as dayjs from 'dayjs';
+import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
 interface Props {
@@ -39,7 +39,7 @@ const ExerciseCard: React.FC<Props> = ({ exercise }) => {
         {exercise.reps}
       </p>
       <p>
-        {exercise.createdAt
+        {Boolean(exercise.createdAt)
           ? dayjs(exercise.createdAt).fromNow()
           : exercise.createdAt}
       </p>

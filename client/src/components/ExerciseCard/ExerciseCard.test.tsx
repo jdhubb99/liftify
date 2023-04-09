@@ -38,7 +38,7 @@ describe('Exercise Card', () => {
 
   it('Displays the exercise date', () => {
     render(<ExerciseCard exercise={testExercise} />);
-    const date = screen.getByText(/on/);
+    const date = screen.getByText(/ago/);
     expect(date).toBeInTheDocument();
   });
 
