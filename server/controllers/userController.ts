@@ -8,5 +8,12 @@ export const userLogin = async (req: Request, res: Response) => {
 
 // signup user
 export const userSignUp = async (req: Request, res: Response) => {
-  res.json({ mssg: 'signup' });
+  const { email, password } = req.body;
+
+  try {
+    const user = await User.signUp(email, password);
+    res.status(201).json({ user });
+  } catch (error: any) {
+    res.status(400).json({ error: error.message });
+  }
 };
