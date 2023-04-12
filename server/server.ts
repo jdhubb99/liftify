@@ -3,7 +3,8 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { connect } from 'mongoose';
-import router from './routes/exercises.js';
+import exerciseRoutes from './routes/exercises.js';
+import userRoutes from './routes/users.js';
 
 dotenv.config();
 const app: Express = express();
@@ -14,8 +15,9 @@ app.use(cors());
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
 
-// simple route
-app.use('/api/exercises', router);
+// routes
+app.use('/api/exercises', exerciseRoutes);
+app.use('/api/user', userRoutes);
 
 // connect to DB
 const port = process.env.PORT || 4000;
