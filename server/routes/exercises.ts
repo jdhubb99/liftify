@@ -6,6 +6,7 @@ import {
   deleteExerciseById,
   updateExerciseById,
 } from '../controllers/exerciseController.js';
+
 const router = Router();
 
 // GET all exercises
