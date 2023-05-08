@@ -3,14 +3,17 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import { ExerciseContextProvider } from './context/ExerciseContext';
+import { AuthContextProvider } from './context/AuthContext';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
-      <ExerciseContextProvider>
-        <App />
-      </ExerciseContextProvider>
+      <AuthContextProvider>
+        <ExerciseContextProvider>
+          <App />
+        </ExerciseContextProvider>
+      </AuthContextProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

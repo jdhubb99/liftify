@@ -5,7 +5,7 @@ export const useExerciseContext = () => {
   const context = useContext(ExerciseContext);
   if (context === undefined) {
     throw new Error(
-      'useExerciseContext must be used within a ExerciseContextProvider'
+      'useExerciseContext must be used within an ExerciseContextProvider'
     );
   }
   return context;
