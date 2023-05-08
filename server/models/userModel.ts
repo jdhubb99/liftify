@@ -3,12 +3,14 @@ import bcrypt from 'bcrypt';
 import validator from 'validator';
 
 interface IUser {
+  _id?: string;
   email: string;
   password: string;
 }
 
 interface UserModel extends Model<IUser> {
   signUp(email: string, password: string): Promise<IUser>;
+  login(email: string, password: string): Promise<IUser>;
 }
 
 const userSchema = new Schema<IUser>({
@@ -53,6 +55,29 @@ userSchema.static('signUp', async function (email: string, password: string) {
     email,
     password: hashedPassword,
   });
+
+  return user;
+});
+
+// Static Login Method
+userSchema.static('login', async function (email: string, password: string) {
+  if (!email || !password) {
+    throw new Error('Email and Password are required');
+  }
+
+  const user = await this.findOne({ email });
+
+  // checks if the user exists
+  if (!user) {
+    throw new Error('User does not exist');
+  }
+
+  // checks if the password is correct
+  const isMatch = await bcrypt.compare(password, user.password);
+
+  if (!isMatch) {
+    throw new Error('Password is incorrect');
+  }
 
   return user;
 });
